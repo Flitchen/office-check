@@ -1,0 +1,3 @@
+const destination = { latitude: -6.804036, longitude: 37.664695 };
+
+const origin = { coords: { latitude: -6.8067067, longitude: 37.702235 } };

@@ -37,7 +37,7 @@ export default function Home() {
   const [checkedIn, setCheckedIn] = useState(false);
   const [checkInLoading, setCheckInLoading] = useState(false);
   const destination = { latitude: -6.8067067, longitude: 37.702235 };
-  const origin = { coords: { latitude: -6.8067067, longitude: 37.702235 } };
+  // const destination = { coords: { latitude: -6.8067067, longitude: 37.702235 } };
 
   const checkIn = async () => {
     try {
