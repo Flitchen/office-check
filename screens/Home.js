@@ -36,8 +36,12 @@ export default function Home() {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [checkedIn, setCheckedIn] = useState(false);
   const [checkInLoading, setCheckInLoading] = useState(false);
-  const destination = { latitude: -6.8067067, longitude: 37.702235 };
-  // const destination = { coords: { latitude: -6.8067067, longitude: 37.702235 } };
+  const destination = { latitude: -6.804036, longitude: 37.664695 };
+
+  // const destination = {
+  //   latitude: -6.827755,
+  //   longitude: 37.6591133,
+  // };
 
   const checkIn = async () => {
     try {
@@ -92,7 +96,6 @@ export default function Home() {
   useEffect(() => {
     trackDate();
   }, [date, month, year]);
-  // console.log("Location: ", location);
 
   return (
     <TouchableWithoutFeedback onPress={handleTouchablePress}>
@@ -128,6 +131,8 @@ export default function Home() {
             showsUserLocation
             showsMyLocationButton
             initialRegion={{
+              // latitude: -6.8067067,
+              // longitude: 37.702235,
               latitude: location?.coords?.latitude,
               longitude: location?.coords?.longitude,
               latitudeDelta: 0.0522,
@@ -155,7 +160,8 @@ export default function Home() {
             <ActivityIndicator color={"#B00000"} size={"large"} />
           </View>
         )}
-        {location?.coords?.latitude === destination.latitude &&
+        {!loading &&
+          location?.coords?.latitude === destination.latitude &&
           location?.coords?.longitude === destination.longitude && (
             <TouchableOpacity
               disabled={checkInLoading || checkedIn}
