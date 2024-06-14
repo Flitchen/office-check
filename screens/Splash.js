@@ -9,8 +9,14 @@ export default function Splash() {
   const { isAuthenticated, isAdmin } = useAuth();
   const navigation = useNavigation();
   useEffect(() => {
+    // console.log("is admin:", isAdmin);
+    // console.log("is auth:", isAuthenticated);
     setTimeout(() => {
-      if (typeof isAuthenticated == "undefined") return;
+      if (
+        typeof isAuthenticated == "undefined" ||
+        typeof isAdmin == "undefined"
+      )
+        return;
       if (isAuthenticated == true) {
         if (isAdmin) {
           navigation.replace("Admin");
@@ -21,7 +27,7 @@ export default function Splash() {
         navigation.replace("Login");
       }
     }, 1000);
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isAdmin]);
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center space-y-10">

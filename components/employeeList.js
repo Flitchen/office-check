@@ -20,7 +20,7 @@ export default function EmployeeList({ employees }) {
             Name:{" "}
             <Text className="text-lightBlack capitalize">
               {item.gender === "male" ? "Mr." : "Ms."} {item.firstName}{" "}
-              {item.lastName.length > 10
+              {item.lastName?.length > 10
                 ? item.lastName.slice(0, 10) + "..."
                 : item.lastName}
             </Text>
@@ -31,7 +31,7 @@ export default function EmployeeList({ employees }) {
           >
             Employee ID:{" "}
             <Text className="text-lightBlack">
-              {item.uid.length > 10 ? item.uid.slice(0, 10) + "..." : item.uid}
+              {item.uid?.length > 10 ? item.uid.slice(0, 10) + "..." : item.uid}
             </Text>
           </Text>
           <Text

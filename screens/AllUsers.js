@@ -6,12 +6,12 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 export default function AllUsers() {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState([]);
-
   useEffect(() => {
     const q = query(collection(db, "employees"), where("role", "!=", "admin"));
 
@@ -46,8 +46,15 @@ export default function AllUsers() {
           </Text>
           <ActivityIndicator color={"#B00000"} size={"large"} />
         </View>
-      ) : (
+      ) : employees.length > 0 ? (
         <EmployeeList employees={employees} />
+      ) : (
+        <Text
+          style={{ fontSize: hp(3) }}
+          className="text-center text-primary-text font-bold tracking-widest"
+        >
+          No employees available
+        </Text>
       )}
     </SafeAreaView>
   );

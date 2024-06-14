@@ -14,17 +14,18 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(undefined);
   const [isAuthenticated, setIsAuthenticated] = useState(undefined);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsAuthenticated(true);
-        setUser(user);
+        checkUserRole(user?.uid);
         updateUserData(user?.uid);
       } else {
         setIsAuthenticated(false);
+        setIsAdmin(false);
         setUser(null);
       }
     });
@@ -55,9 +56,8 @@ export const AuthContextProvider = ({ children }) => {
 
     if (docSnaphot.exists()) {
       let data = docSnaphot.data();
-      // console.log("data: ", data);
       let role = data.role;
-      if (role === "admin") {
+      if (role == "admin") {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
