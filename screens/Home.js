@@ -36,12 +36,12 @@ export default function Home() {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [checkedIn, setCheckedIn] = useState(false);
   const [checkInLoading, setCheckInLoading] = useState(false);
-  const destination = { latitude: -6.804036, longitude: 37.664695 };
+  // const destination = { latitude: -6.804036, longitude: 37.664695 };
 
-  // const destination = {
-  //   latitude: -6.827755,
-  //   longitude: 37.6591133,
-  // };
+  const destination = {
+    latitude: -6.827755,
+    longitude: 37.6591133,
+  };
 
   const checkIn = async () => {
     try {

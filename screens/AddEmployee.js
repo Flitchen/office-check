@@ -24,7 +24,8 @@ import { useAuth } from "../context/authContext";
 
 export default function AddEmployee() {
   const navigation = useNavigation();
-  const { signup } = useAuth();
+  const { user, setUser, signup } = useAuth();
+  const prevUser = user;
   const [selectedGender, setSelectedGender] = useState("");
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -67,7 +68,7 @@ export default function AddEmployee() {
       userInfo.firstName,
       userInfo.lastName,
       userInfo.gender,
-      userInfo.role
+      userInfo.role.toLowerCase()
     );
     setLoading(false);
 
@@ -77,6 +78,7 @@ export default function AddEmployee() {
     }
     Alert.alert("Success", "Employee added successfully");
 
+    setUser(prevUser);
     setUserInfo({
       email: "",
       phone: "",
@@ -242,12 +244,16 @@ export default function AddEmployee() {
               loading ? "opacity-50" : ""
             }`}
           >
-            <Text
-              style={{ fontSize: hp(3) }}
-              className="text-white font-bold tracking-widest text-center"
-            >
-              {!loading ? "Add Employee" : "Loading"}
-            </Text>
+            {!loading ? (
+              <Text
+                style={{ fontSize: hp(3) }}
+                className="text-white font-bold tracking-widest text-center"
+              >
+                Add Employee
+              </Text>
+            ) : (
+              <ActivityIndicator color={"white"} />
+            )}
           </TouchableOpacity>
           {/* <ActivityIndicator color={"white"} /> */}
         </View>

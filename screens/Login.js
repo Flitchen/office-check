@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -150,15 +151,19 @@ export default function Login() {
             onPress={handleLogin}
             style={{ width: wp(60) }}
             className={`bg-primaryRed px-10 py-3 rounded-lg ${
-              loading ? "opacity-50" : ""
+              loading ? "opacity-70" : ""
             }`}
           >
-            <Text
-              style={{ fontSize: hp(3) }}
-              className="text-white font-bold tracking-widest text-center"
-            >
-              {!loading ? "Login" : "Loading"}
-            </Text>
+            {!loading ? (
+              <Text
+                style={{ fontSize: hp(3) }}
+                className="text-white font-bold tracking-widest text-center"
+              >
+                Login
+              </Text>
+            ) : (
+              <ActivityIndicator color={"white"} />
+            )}
           </TouchableOpacity>
         </View>
       </ScrollView>
