@@ -22,6 +22,7 @@ import { useAuth } from "../context/authContext";
 import { addDoc, collection, doc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 // import MapViewDirections from "react-native-maps-directions";
+// import {sendSMS} from "../constants";
 
 export default function Home() {
   let date = new Date().getDate();
@@ -88,9 +89,19 @@ export default function Home() {
     setLoading(false);
     // console.log("Current Location: ", currentLocation);
   };
+
+  const validateLocation = async () => {
+    let username;
+    if (user) {
+      username = user.firstName + "" + user.lastName;
+    }
+    // await sendSMS(username);
+  };
+
   useEffect(() => {
     setInterval(() => {
       getPermissionAndCurrentLocation();
+      validateLocation();
     }, 60000);
   }, []);
   useEffect(() => {

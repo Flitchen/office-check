@@ -146,6 +146,7 @@ export default function Login() {
           </View>
         </View>
         <View className="space-y-3">
+          {/* Login btn */}
           <TouchableOpacity
             disabled={loading}
             onPress={handleLogin}

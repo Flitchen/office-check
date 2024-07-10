@@ -80,6 +80,7 @@ export default function Admin() {
   return (
     <TouchableWithoutFeedback onPress={handleTouchablePress}>
       <SafeAreaView className="flex-1">
+        {/* Navbar */}
         <View
           className={` flex flex-row justify-between items-center px-3 my-1`}
         >
@@ -159,7 +160,7 @@ const MoreOptions = ({
           }}
         >
           <MaterialIcons name="password" size={hp(2.71)} color="gray" />
-          <Text className="text-neutral-600 mr-1" style={{ fontSize: hp(2) }}>
+          <Text className=" text-neutral-600 mr-1" style={{ fontSize: hp(2) }}>
             Change Password
           </Text>
         </TouchableOpacity>
